@@ -1,31 +1,21 @@
-import { useState } from 'react';
-import { testfile_backend } from 'declarations/testfile_backend';
+// App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
+import Hello from "./Routes/home/home.component";
+import Navbar from "./Components/navigation/navigation.component";
+import { Routes, Route } from "react-router-dom";
+import SignInPage from "./Routes/Login/getin.component";
 
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    testfile_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
-
-  return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
-  );
+const App = () => {
+    return (
+        <div>
+            <Navbar />
+            <Routes>
+                <Route path={"/home"} element={<Hello />} />
+                <Route path={"/login"} element={<SignInPage/>}/>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
